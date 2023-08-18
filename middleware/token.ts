@@ -1,6 +1,6 @@
+import axios from "axios";
 import { authServerHost } from "../config";
 import { Next, Context } from "koa";
-const request = require("request");
 
 module.exports = (option: any) => async (ctx: Context, next: Next) => {
   try {
@@ -12,15 +12,10 @@ module.exports = (option: any) => async (ctx: Context, next: Next) => {
     const token = (ctx.request.header["authorization"] || "")
       .replace("Bear", "")
       .trim();
-    request.post(
-      tokenUrl,
-      { token },
-      async function (error: any, response: any, body: any) {
-        if (body.success) {
-          await next();
-        }
-      }
-    );
+    const res = await axios.post(tokenUrl, { token })
+    if (res.status === 200 && res.data.success) {
+      await next();
+    }
   } catch (e) {
     ctx.status = 500;
     ctx.body = "error";

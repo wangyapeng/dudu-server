@@ -19,6 +19,7 @@
   "homepage": "https://github.com/wangyapeng/dudu-server#readme",
   "dependencies": {
     "argon2": "^0.28.7",
+    "axios": "^1.4.0",
     "jsonwebtoken": "^9.0.1",
     "koa": "^2.13.4",
     "koa-body": "^5.0.0",

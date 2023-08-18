@@ -1,4 +1,5 @@
 const Router = require('koa-router');
+import { addNewRoomType, deleteRoomType, getRoomTypeList } from '../controller/RoomType';
 import { Context } from 'koa';
 const router = new Router();
 
@@ -9,4 +10,7 @@ router.get('/', async (ctx: Context) => {
 })
 
 
+router.post('/roomType',addNewRoomType)
+router.get('/roomType',getRoomTypeList)
+router.delete('/roomType',deleteRoomType)
 module.exports = router;

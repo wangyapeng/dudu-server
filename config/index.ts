@@ -4,11 +4,11 @@ const mysqlConfig = {
   port: 3306,
   username: "root",
   password: "12345678",
-  database: "nodemysql",
+  database: "dudu",
   synchronize: true,
   logging: false,
 };
 
-const authServerHost = "http://localhost:9002";
+const authServerHost = "http://192.168.0.188:9002";
 
 export { mysqlConfig, authServerHost };
