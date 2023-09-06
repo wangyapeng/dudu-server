@@ -1,9 +1,10 @@
+import { Room } from "../entites/Room"
 import { mysqlConfig } from "../config"
-import { RoomType } from "../entity/RoomType"
+import { RoomType } from "../entites/RoomType"
 import { DataSource } from "typeorm"
 
 const AppDataSource = new DataSource({
-    entities: [RoomType],
+    entities: [RoomType, Room],
     ...mysqlConfig as any
 })
 

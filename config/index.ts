@@ -9,6 +9,6 @@ const mysqlConfig = {
   logging: false,
 };
 
-const authServerHost = "http://192.168.0.188:9002";
+const authServerHost = "http://192.168.0.188:9999";
 
 export { mysqlConfig, authServerHost };

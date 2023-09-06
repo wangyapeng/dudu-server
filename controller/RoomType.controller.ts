@@ -1,5 +1,5 @@
-import { RoomType } from "../entity/RoomType";
-import { AppDataSource } from "../controller";
+import { RoomType } from "../entites/RoomType";
+import { AppDataSource } from ".";
 import { Context } from "koa";
 import { getConnection, getManager } from "typeorm";
 
@@ -11,10 +11,8 @@ export async function addNewRoomType(ctx: Context) {
     let roomType = new RoomType();
 
     roomType = body;
-    const user = await typeRepository.save(roomType);
-    await (console.log('--------->', user, ctx))
-
-    if (user) {
+    const ret = await typeRepository.save(roomType);
+    if (ret) {
         ctx.status = 200;
         ctx.body = {
             success: true,
@@ -32,11 +30,12 @@ export async function addNewRoomType(ctx: Context) {
 
 export async function getRoomTypeList(ctx: Context) {
     const query = ctx.request.query;
-
+    const { userId } = query;
     const typeRepository = AppDataSource.getRepository(RoomType);
 
-    const list = await typeRepository.find();
-
+    const list = await typeRepository.findBy({
+        userId: Number(userId),
+    });
     ctx.status = 200;
     ctx.body = {
         success: true,
